@@ -1,0 +1,49 @@
+<main class="app">
+  <h1>{{ title }}</h1>
+
+  <form class="tarefa-form" (ngSubmit)="addTarefa()">
+    <input
+      type="text"
+      [(ngModel)]="newTarefaTitle"
+      name="title"
+      placeholder="Digite uma nova tarefa"
+    />
+    <button type="submit" [disabled]="loading">Adicionar</button>
+  </form>
+
+  <p *ngIf="loading" class="status status--loading">Carregando...</p>
+  <p *ngIf="errorMessage" class="status status--error">{{ errorMessage }}</p>
+
+  <section>
+    <h2>Tarefas</h2>
+
+    <p *ngIf="tarefas.length === 0 && !loading" class="tarefa-list__empty">
+      Nenhuma tarefa encontrada.
+    </p>
+
+    <ul class="tarefa-list">
+      <li
+        *ngFor="let tarefa of tarefas"
+        class="tarefa-item"
+        [class.tarefa-item--completed]="tarefa.completed"
+      >
+        <span class="tarefa-item__title">{{ tarefa.title }}</span>
+
+        <div class="tarefa-item__actions">
+          <button
+            *ngIf="!tarefa.completed"
+            type="button"
+            class="tarefa-item__finish"
+            (click)="finalizarTarefa(tarefa)"
+          >
+            Finalizar
+          </button>
+
+          <button type="button" class="tarefa-item__remove" (click)="removeTarefa(tarefa.id)">
+            Remover
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>

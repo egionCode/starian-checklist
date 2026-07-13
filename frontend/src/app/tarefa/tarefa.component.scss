@@ -1,0 +1,92 @@
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.tarefa-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.5rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.status {
+  &--loading {
+    color: #666;
+  }
+
+  &--error {
+    color: #c62828;
+  }
+}
+
+.tarefa-list {
+  list-style-type: none;
+  padding: 0;
+
+  &__empty {
+    color: gray;
+  }
+}
+
+.tarefa-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem;
+  margin-bottom: 0.3125rem;
+  border: 1px solid #ddd;
+  gap: 0.5rem;
+
+  &--completed .tarefa-item__title {
+    text-decoration: line-through;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  &__finish {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 0.3125rem 0.625rem;
+    cursor: pointer;
+  }
+
+  &__remove {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 0.3125rem 0.625rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarefa-form {
+    flex-direction: column;
+  }
+}
